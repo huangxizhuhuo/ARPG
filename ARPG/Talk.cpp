@@ -85,19 +85,19 @@ bool CTalk::Render(char *Text,D3DCOLOR Color,int Type)
 	else
 		m_Font->Print(Temp,60,535,600,88,m_TextColor,DT_WORDBREAK);
 	{
-	static CTexture m_InTalkCursor;
-	static int SumFrame=0,iNum=0;
-	if(SumFrame%20==0)
-		iNum++;
-	if(iNum>1)
-		iNum=0;
-	SumFrame++;
-	m_InTalkCursor.Load(m_Graphics,g_TalkCursor[iNum]);
-	SumFrame++;
-	m_Graphics->BeginSprite();
-	m_InTalkCursor.Blit(m_Mouse->GetXPos(),m_Mouse->GetYPos());
-	m_Graphics->EndSprite();
-	m_InTalkCursor.Free();
+		static CTexture m_InTalkCursor;
+		static int SumFrame=0,iNum=0;
+		if(SumFrame%20==0)
+			iNum++;
+		if(iNum>1)
+			iNum=0;
+		SumFrame++;
+		m_InTalkCursor.Load(m_Graphics,g_TalkCursor[iNum]);
+		SumFrame++;
+		m_Graphics->BeginSprite();
+		m_InTalkCursor.Blit(m_Mouse->GetXPos(),m_Mouse->GetYPos());
+		m_Graphics->EndSprite();
+		m_InTalkCursor.Free();
 	}
 	return true;
 }

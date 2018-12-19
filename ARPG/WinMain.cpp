@@ -48,13 +48,13 @@ static sCharAnimationInfo g_CharAnimations[] =
 static char *g_SpellMeshNames[] =
 {
     { "..\\Magic\\Fireball.x"   },
-    { "..\\Magic\\Explosion.x"  },
-    { "..\\Magic\\Ice.x"        },
-    { "..\\Magic\\Heal.x"       },
-    { "..\\Magic\\Teleport.x"   },
-    { "..\\Magic\\Groundball.x" },
-    { "..\\Magic\\Bomb.x"       },
-    { "..\\Magic\\Force.x"      }
+    { "..\\Magic\\Fireball.x"  },
+    { "..\\Magic\\Fireball.x"        },
+    { "..\\Magic\\Fireball.x"       },
+    { "..\\Magic\\Fireball.x"   },
+    { "..\\Magic\\Fireball.x" },
+    { "..\\Magic\\Fireball.x"       },
+    { "..\\Magic\\Fireball.x"      }
 };
 // Global sound effect filenames
 #define NUM_SOUNDS 20
@@ -251,6 +251,7 @@ BOOL CApp::Init()
 	m_PartSys.SetEndColor1(D3DCOLOR_RGBA(255,255,255,255));
 	m_PartSys.SetTexture("..\\Image\\Particle.png");
 	m_PartSys.RestoreDeviceObjects(m_Graphics.GetDeviceCOM());
+	//m_PartSys.SetPos(D3DXVECTOR3(-112.0f, 100.f, -1066.0f));
 
 	m_bFreeLeftButton=true;
   
@@ -1150,7 +1151,7 @@ void CApp::GameFrame(void *Ptr, long Purpose)
 	GetCursorPos(&pt);
     ScreenToClient(App->GethWnd(),&pt); 
 	sCharacter *NPCPointTo=App->GetCharacterAt(pt.x,pt.y);
-	App->m_Script.Execute("..\\Script\\shua1.mls");
+	//App->m_Script.Execute("..\\Script\\shua1.mls");
 	App->m_Script.Execute("..\\Script\\shua.mls");
     sCharacter *CharPtr;
     long        TriggerNum;

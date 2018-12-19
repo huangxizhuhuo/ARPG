@@ -213,14 +213,19 @@ sScript *CGameScript::Script_Goto(sScript *ScriptPtr)
 
 sScript *CGameScript::Script_Message(sScript *ScriptPtr)//显示一条信息,采用m_Window,按下鼠标左键或空格键Break
 {
-	/*m_Talk.SetText((char*)ScriptPtr->Entries[0].strText.c_str());// Create the text   
+	m_Talk.SetText((char*)ScriptPtr->Entries[0].strText.c_str());// Create the text   
 	// Lock the keyboard and mouse
 	m_App->m_Keyboard.SetLock(KEY_SPACE, TRUE);
 	m_App->m_Keyboard.SetKeyState(KEY_SPACE, FALSE);
 	m_App->m_Mouse.SetLock(MOUSE_LBUTTON, TRUE);
 	m_App->m_Mouse.SetKeyState(MOUSE_LBUTTON, FALSE);	
-	while(1)// Render the scene while waiting for keypress/buttonpress 
+	while(true)// Render the scene while waiting for keypress/buttonpress 
 	{
+		static DWORD UpdateTimer = timeGetTime();
+		// Limit all frame updates to 30 fps
+		if (timeGetTime() < UpdateTimer + 33)
+			continue;
+		UpdateTimer = timeGetTime();
 		// Break when space pressed  
 		m_App->m_Keyboard.Acquire(TRUE); 
 		m_App->m_Keyboard.Read();
@@ -258,8 +263,7 @@ sScript *CGameScript::Script_Message(sScript *ScriptPtr)//显示一条信息,采用m_Win
 	m_App->m_Keyboard.SetKeyState(KEY_SPACE, FALSE);
 	m_App->m_Mouse.SetLock(MOUSE_LBUTTON, TRUE);
 	m_App->m_Mouse.SetKeyState(MOUSE_LBUTTON, FALSE);   
-	return ScriptPtr->Next;*/
-	return NULL;
+	return ScriptPtr->Next;
 }
 
 sScript *CGameScript::Script_CharMessage(sScript *ScriptPtr)
@@ -289,7 +293,7 @@ sScript *CGameScript::Script_CharMessage(sScript *ScriptPtr)
 	m_App->m_Mouse.SetKeyState(MOUSE_LBUTTON, FALSE);
 	// Render the scene while waiting for keypress/buttonpress
 	char Text[100];
-	sprintf(Text,"..\\Image\\face\\%ld.png",ScriptPtr->Entries[3].lValue);
+	sprintf(Text, "..\\Image\\face\\%d.png", CharPtr->ID);// ScriptPtr->Entries[3].lValue);
 	m_Head.Load(&m_App->m_Graphics,Text);//D3DCOLOR_RGBA(255,255,255,0));//////////////////);
 	while(true)
 	{
@@ -911,10 +915,10 @@ sScript *CGameScript::Script_PlayAVI(sScript *Script)
 
 sScript *CGameScript::Script_BlackScreenMessage(sScript *Script)
 {
-	/*m_BlackScreen.SetText((char*)Script->Entries[0].strText.c_str());
+	m_BlackScreen.SetText((char*)Script->Entries[0].strText.c_str());
 	m_App->m_Mouse.SetLock(0,TRUE);
 	m_App->m_Mouse.SetButtonState(0,FALSE);
-	while(1)
+	while(true)
 	{
 		m_App->m_Mouse.Acquire();
 		m_App->m_Mouse.Read();
@@ -936,6 +940,5 @@ sScript *CGameScript::Script_BlackScreenMessage(sScript *Script)
 	}
 	m_App->m_Mouse.SetLock(0,TRUE);
     m_App->m_Mouse.SetButtonState(0,FALSE);
-	return Script->Next;*/
-	return NULL;
+	return Script->Next;
 }
